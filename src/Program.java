@@ -13,8 +13,11 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
 
         ChessGame game = new ChessGame();
+
         BoardDisplay.clearConsole();
+
         BoardDisplay.printBoard(game.getBoard());
+
         while (!game.isFinished()) {
             System.out.println("Enter move (eg. A2-A3): ");
             String input = scanner.nextLine();
