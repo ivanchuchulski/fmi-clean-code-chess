@@ -5,7 +5,6 @@ import Chess.ChessPiece.*;
 import java.util.ArrayList;
 
 public class ChessGame {
-
     private final ChessBoard board;
     private boolean isFinished;
     private PieceColor currentPlayer;
@@ -19,7 +18,7 @@ public class ChessGame {
     /**
      * @return returns true if move was played, false if move was illegal
      */
-    public boolean playMove(Tuple from, Tuple to) {
+    public boolean playMove(BoardCoordinate from, BoardCoordinate to) {
         if (isValidMove(from, to, false)) {
             Tile fromTile = board.getBoardArray()[from.Y()][from.X()];
             ChessPiece pieceToMove = fromTile.getPiece();
@@ -59,14 +58,14 @@ public class ChessGame {
     // This includes whether the King can move out of check himself.
     private boolean isCheckPreventable(PieceColor color) {
         boolean canPreventCheck = false;
-        Tuple[] locations = board.getAllPiecesLocationForColor(color);
+        BoardCoordinate[] locations = board.getAllPiecesLocationForColor(color);
 
-        for (Tuple location : locations) {
+        for (BoardCoordinate location : locations) {
             Tile fromTile = board.getTileFromTuple(location);
             ChessPiece piece = fromTile.getPiece();
-            Tuple[] possibleMoves = validMovesForPiece(piece, location);
+            BoardCoordinate[] possibleMoves = validMovesForPiece(piece, location);
 
-            for (Tuple newLocation : possibleMoves) {
+            for (BoardCoordinate newLocation : possibleMoves) {
                 Tile toTile = board.getTileFromTuple(newLocation);
                 ChessPiece toPiece = toTile.getPiece();
 
@@ -97,16 +96,16 @@ public class ChessGame {
     }
 
     private boolean isKingCheck(PieceColor kingColor) {
-        Tuple kingLocation = board.getKingLocation(kingColor);
+        BoardCoordinate kingLocation = board.getKingLocation(kingColor);
         return canOpponentTakeLocation(kingLocation, kingColor);
     }
 
-    private boolean canOpponentTakeLocation(Tuple location, PieceColor color) {
+    private boolean canOpponentTakeLocation(BoardCoordinate location, PieceColor color) {
         PieceColor opponentColor = ChessPiece.opponent(color);
-        Tuple[] piecesLocation = board.getAllPiecesLocationForColor(opponentColor);
+        BoardCoordinate[] piecesLocation = board.getAllPiecesLocationForColor(opponentColor);
 
-        for (Tuple fromTuple : piecesLocation) {
-            if (isValidMove(fromTuple, location, true))
+        for (BoardCoordinate fromBoardCoordinate : piecesLocation) {
+            if (isValidMove(fromBoardCoordinate, location, true))
                 return true;
         }
         return false;
@@ -118,7 +117,7 @@ public class ChessGame {
      * @param hypothetical if the move is hypothetical, we disregard if it sets the from player check
      * @return a boolean indicating whether the move is valid or not
      */
-    private boolean isValidMove(Tuple from, Tuple to, boolean hypothetical) {
+    private boolean isValidMove(BoardCoordinate from, BoardCoordinate to, boolean hypothetical) {
         Tile fromTile = board.getTileFromTuple(from);
         Tile toTile = board.getTileFromTuple(to);
         ChessPiece fromPiece = fromTile.getPiece();
@@ -162,7 +161,7 @@ public class ChessGame {
     //         of ensuring its not taking one of its own, and within its 'possibleMoves'.
     // Returns the Tuples representing the Tiles to which the given piece
     // can legally move.
-    private Tuple[] validMovesForPiece(ChessPiece piece, Tuple currentLocation) {
+    private BoardCoordinate[] validMovesForPiece(ChessPiece piece, BoardCoordinate currentLocation) {
         return piece.hasRepeatableMoves()
                 ? validMovesRepeatable(piece, currentLocation)
                 : validMovesNonRepeatable(piece, currentLocation);
@@ -170,9 +169,9 @@ public class ChessGame {
 
     // Returns the Tuples representing the Tiles to which the given piece
     // can legally move.
-    private Tuple[] validMovesRepeatable(ChessPiece piece, Tuple currentLocation) {
+    private BoardCoordinate[] validMovesRepeatable(ChessPiece piece, BoardCoordinate currentLocation) {
         Move[] moves = piece.getMoves();
-        ArrayList<Tuple> possibleMoves = new ArrayList<>();
+        ArrayList<BoardCoordinate> possibleMoves = new ArrayList<>();
 
         for (Move move : moves) {
             for (int i = 1; i < 7; i++) {
@@ -180,7 +179,7 @@ public class ChessGame {
                 int newY = currentLocation.Y() + move.y * i;
                 if (newX < 0 || newX > 7 || newY < 0 || newY > 7) break;
 
-                Tuple toLocation = new Tuple(newX, newY);
+                BoardCoordinate toLocation = new BoardCoordinate(newX, newY);
                 Tile tile = board.getTileFromTuple(toLocation);
                 if (tile.isEmpty()) {
                     possibleMoves.add(toLocation);
@@ -191,12 +190,12 @@ public class ChessGame {
                 }
             }
         }
-        return possibleMoves.toArray(new Tuple[0]);
+        return possibleMoves.toArray(new BoardCoordinate[0]);
     }
 
-    private Tuple[] validMovesNonRepeatable(ChessPiece piece, Tuple currentLocation) {
+    private BoardCoordinate[] validMovesNonRepeatable(ChessPiece piece, BoardCoordinate currentLocation) {
         Move[] moves = piece.getMoves();
-        ArrayList<Tuple> possibleMoves = new ArrayList<>();
+        ArrayList<BoardCoordinate> possibleMoves = new ArrayList<>();
 
         for (Move move : moves) {
             int currentX = currentLocation.X();
@@ -204,14 +203,14 @@ public class ChessGame {
             int newX = currentX + move.x;
             int newY = currentY + move.y;
             if (newX < 0 || newX > 7 || newY < 0 || newY > 7) continue;
-            Tuple newLocation = new Tuple(newX, newY);
+            BoardCoordinate newLocation = new BoardCoordinate(newX, newY);
             if (isValidMoveForPiece(currentLocation, newLocation)) possibleMoves.add(newLocation);
         }
-        return possibleMoves.toArray(new Tuple[0]);
+        return possibleMoves.toArray(new BoardCoordinate[0]);
     }
 
     // Checks whether a given move from from one tuple to another is valid.
-    private boolean isValidMoveForPiece(Tuple from, Tuple to) {
+    private boolean isValidMoveForPiece(BoardCoordinate from, BoardCoordinate to) {
         ChessPiece fromPiece = board.getTileFromTuple(from).getPiece();
         boolean repeatableMoves = fromPiece.hasRepeatableMoves();
 
@@ -221,7 +220,7 @@ public class ChessGame {
     }
 
     // Check whether a given move is valid for a piece without repeatable moves.
-    private boolean isValidMoveForPieceRepeatable(Tuple from, Tuple to) {
+    private boolean isValidMoveForPieceRepeatable(BoardCoordinate from, BoardCoordinate to) {
         ChessPiece fromPiece = board.getTileFromTuple(from).getPiece();
         Move[] validMoves = fromPiece.getMoves();
 
@@ -236,7 +235,7 @@ public class ChessGame {
 
                     //if move is generally valid - check if path is valid up till i
                     for (int j = 1; j <= i; j++) {
-                        Tile tile = board.getTileFromTuple(new Tuple(from.X() + move.x * j, from.Y() + move.y * j));
+                        Tile tile = board.getTileFromTuple(new BoardCoordinate(from.X() + move.x * j, from.Y() + move.y * j));
                         //if passing through non empty tile return false
                         if (j != i && !tile.isEmpty())
                             return false;
@@ -252,7 +251,7 @@ public class ChessGame {
     }
 
     // Check whether a given move is valid for a piece with repeatable moves.
-    private boolean isValidMoveForPieceNonRepeatable(Tuple from, Tuple to) {
+    private boolean isValidMoveForPieceNonRepeatable(BoardCoordinate from, BoardCoordinate to) {
         ChessPiece fromPiece = board.getTileFromTuple(from).getPiece();
         Move[] validMoves = fromPiece.getMoves();
         Tile toTile = board.getTileFromTuple(to);
@@ -279,8 +278,8 @@ public class ChessGame {
         return false;
     }
 
-    // Determine wheter the Pawn at 'from' on 'board' has moved yet.
-    public boolean isFirstMoveForPawn(Tuple from, ChessBoard board) {
+    // Determine whether the Pawn at 'from' on 'board' has moved yet.
+    public boolean isFirstMoveForPawn(BoardCoordinate from, ChessBoard board) {
         Tile tile = board.getTileFromTuple(from);
         if (tile.isEmpty() || tile.getPiece().getPieceType() != PieceType.Pawn) {
             return false;

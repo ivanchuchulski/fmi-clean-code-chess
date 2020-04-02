@@ -4,8 +4,10 @@ import Chess.ChessBoard;
 import Chess.Tile;
 
 public class BoardDisplay {
+    public BoardDisplay() {
+    }
 
-    public static void printBoard(ChessBoard board) {
+    public void printBoard(ChessBoard board) {
         clearConsole();
         Tile[][] b = board.getBoardArray();
 
@@ -27,7 +29,7 @@ public class BoardDisplay {
     /**
      * Universal console clear for both Windows and Unix machines.
      */
-    public static void clearConsole() {
+    public void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
 

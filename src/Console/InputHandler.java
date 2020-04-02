@@ -1,6 +1,6 @@
 package Console;
 
-import Chess.Tuple;
+import Chess.BoardCoordinate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,14 +13,13 @@ public class InputHandler {
         mapper = new BoardMapper();
     }
 
-    public Tuple parse(String val) {
-        int x = mapper.map(val.charAt(0));
-        int y = mapper.map(Integer.parseInt(String.valueOf(val.charAt(1))));
+    public boolean isInputValid(String move) {
+        Matcher matcher = validMove.matcher(move);
 
-        return new Tuple(x, y);
+        return matcher.matches();
     }
 
-    public Tuple getFrom(String val) {
+    public BoardCoordinate getSource(String val) {
         Matcher matcher = validMove.matcher(val);
         matcher.matches();
         String coords = matcher.group(1);
@@ -28,7 +27,7 @@ public class InputHandler {
         return parse(coords);
     }
 
-    public Tuple getTo(String val) {
+    public BoardCoordinate getDestination(String val) {
         Matcher matcher = validMove.matcher(val);
         matcher.matches();
         String coords = matcher.group(3);
@@ -36,9 +35,10 @@ public class InputHandler {
         return parse(coords);
     }
 
-    public boolean isValid(String val) {
-        Matcher matcher = validMove.matcher(val);
+    private BoardCoordinate parse(String val) {
+        int x = mapper.map(val.charAt(0));
+        int y = mapper.map(Integer.parseInt(String.valueOf(val.charAt(1))));
 
-        return matcher.matches();
+        return new BoardCoordinate(x, y);
     }
 }
