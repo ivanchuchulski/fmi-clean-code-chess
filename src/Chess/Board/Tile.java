@@ -1,5 +1,7 @@
-package Chess;
+package Chess.Board;
 
+
+import Chess.Pieces.ChessPiece;
 
 public class Tile {
 

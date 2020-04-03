@@ -1,7 +1,7 @@
 package Console;
 
-import Chess.ChessBoard;
-import Chess.Tile;
+import Chess.Board.ChessBoard;
+import Chess.Board.Tile;
 
 public class BoardDisplay {
     public BoardDisplay() {

@@ -1,7 +1,6 @@
 package Chess.Pieces;
 
-import Chess.ChessPiece;
-import Chess.Move;
+import Chess.Board.Move;
 
 public class Pawn extends ChessPiece {
 

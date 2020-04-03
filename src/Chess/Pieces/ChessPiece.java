@@ -1,4 +1,6 @@
-package Chess;
+package Chess.Pieces;
+
+import Chess.Board.Move;
 
 public abstract class ChessPiece {
     private final PieceType type;

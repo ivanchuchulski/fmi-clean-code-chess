@@ -1,4 +1,4 @@
-package Chess;
+package Chess.Board;
 
 public class Move {
     public final int x;

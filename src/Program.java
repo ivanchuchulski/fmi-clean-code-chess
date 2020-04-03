@@ -1,5 +1,5 @@
-import Chess.ChessGame;
-import Chess.BoardCoordinate;
+import Chess.Board.ChessGame;
+import Chess.Board.BoardCoordinate;
 import Console.InputHandler;
 import Console.BoardDisplay;
 

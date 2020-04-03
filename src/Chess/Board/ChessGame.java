@@ -1,6 +1,7 @@
-package Chess;
+package Chess.Board;
 
-import Chess.ChessPiece.*;
+import Chess.Pieces.ChessPiece;
+import Chess.Pieces.ChessPiece.*;
 
 import java.util.ArrayList;
 
@@ -91,8 +92,13 @@ public class ChessGame {
     }
 
     private boolean isColorCheckMate(PieceColor color) {
-        if (!isKingCheck(color)) return false;//if not check, then we're not mate
-        return !isCheckPreventable(color);
+        if (!isKingCheck(color))
+        {
+            return false;//if not check, then we're not mate
+        }
+        else {
+            return !isCheckPreventable(color);
+        }
     }
 
     private boolean isKingCheck(PieceColor kingColor) {

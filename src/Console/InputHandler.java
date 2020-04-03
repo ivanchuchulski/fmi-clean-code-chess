@@ -1,6 +1,6 @@
 package Console;
 
-import Chess.BoardCoordinate;
+import Chess.Board.BoardCoordinate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
