@@ -1,6 +1,8 @@
 package Chess.Pieces;
 
 import Chess.Board.Move;
+import Chess.Pieces.Enums.PieceColor;
+import Chess.Pieces.Enums.PieceType;
 
 public abstract class ChessPiece {
     private final PieceType type;
@@ -19,13 +21,7 @@ public abstract class ChessPiece {
         charValue = type.name().trim().charAt(0);
     }
 
-    public enum PieceType {
-        Pawn, Rook, Knight, Bishop, Queen, King
-    }
 
-    public enum PieceColor {
-        White, Black
-    }
 
     public Move[] getMoves() {
         return moves;

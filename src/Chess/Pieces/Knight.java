@@ -1,6 +1,7 @@
 package Chess.Pieces;
 
 import Chess.Board.Move;
+import Chess.Pieces.Enums.PieceType;
 
 public class Knight extends ChessPiece {
 
