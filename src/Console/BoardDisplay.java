@@ -9,7 +9,7 @@ public class BoardDisplay {
 
     public void printBoard(ChessBoard board) {
         clearConsole();
-        Tile[][] b = board.getBoardArray();
+        Tile[][] b = board.getBoard();
 
         System.out.println();
         System.out.println("      [A][B][C][D][E][F][G][H] \n");

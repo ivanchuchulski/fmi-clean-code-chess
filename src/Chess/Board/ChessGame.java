@@ -1,7 +1,6 @@
 package Chess.Board;
 
 import Chess.Pieces.ChessPiece;
-import Chess.Pieces.ChessPiece.*;
 import Chess.Pieces.Enums.PieceColor;
 import Chess.Pieces.Enums.PieceType;
 
@@ -23,10 +22,10 @@ public class ChessGame {
      */
     public boolean playMove(BoardCoordinate from, BoardCoordinate to) {
         if (isValidMove(from, to, false)) {
-            Tile fromTile = board.getBoardArray()[from.Y()][from.X()];
+            Tile fromTile = board.getBoard()[from.Y()][from.X()];
             ChessPiece pieceToMove = fromTile.getPiece();
 
-            Tile toTile = board.getBoardArray()[to.Y()][to.X()];
+            Tile toTile = board.getBoard()[to.Y()][to.X()];
             toTile.setPiece(pieceToMove);
 
             fromTile.empty();

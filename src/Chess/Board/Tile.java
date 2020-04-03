@@ -1,16 +1,12 @@
 package Chess.Board;
 
 
+import Chess.Board.Enums.TileColor;
 import Chess.Pieces.ChessPiece;
 
 public class Tile {
-
     private ChessPiece piece;
     private final TileColor color;
-
-    public enum TileColor {
-        White, Black
-    }
 
     public Tile(TileColor color) {
         this.color = color;
