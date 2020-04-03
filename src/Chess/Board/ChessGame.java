@@ -2,6 +2,8 @@ package Chess.Board;
 
 import Chess.Pieces.ChessPiece;
 import Chess.Pieces.ChessPiece.*;
+import Chess.Pieces.Enums.PieceColor;
+import Chess.Pieces.Enums.PieceType;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,12 @@
 package Chess.Pieces;
 
 import Chess.Board.Move;
+import Chess.Pieces.Enums.PieceColor;
 import Chess.Pieces.Enums.PieceType;
 
 public class King extends ChessPiece {
 
-    public King(ChessPiece.PieceColor color) {
+    public King(PieceColor color) {
         super(PieceType.King, color, validMoves(), false);
     }
 

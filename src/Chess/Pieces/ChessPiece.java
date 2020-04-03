@@ -21,8 +21,6 @@ public abstract class ChessPiece {
         charValue = type.name().trim().charAt(0);
     }
 
-
-
     public Move[] getMoves() {
         return moves;
     }
