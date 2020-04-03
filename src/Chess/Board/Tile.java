@@ -25,11 +25,12 @@ public class Tile {
         return this.piece;
     }
 
+    // TODO add piece color to be displayed
     public String getValue() {
         if (piece != null) {
-            return "[" + piece.getCharValue() + "]";
+            return "[ " + piece.getBoardColor() + piece.getSign() + " ]";
         } else {
-            return "[ ]";
+            return "[    ]";
         }
     }
 

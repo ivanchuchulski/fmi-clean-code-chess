@@ -8,8 +8,6 @@ public abstract class ChessPiece {
     private final PieceType type;
     private final PieceColor color;
     private final Move[] moves;
-    private final String name;
-    private final char charValue;
     private final boolean repeatableMoves;
 
     protected ChessPiece(PieceType type, PieceColor color, Move[] moves, boolean repeatableMoves) {
@@ -17,25 +15,25 @@ public abstract class ChessPiece {
         this.color = color;
         this.moves = moves;
         this.repeatableMoves = repeatableMoves;
-        name = type.name();
-        charValue = type.name().trim().charAt(0);
     }
 
     public Move[] getMoves() {
         return moves;
     }
+    
+    public char getSign() {
+        return type.name().charAt(0);
+    }
 
-    public String getName() {
-        return name;
+    public char getBoardColor() {
+        return color.name().toLowerCase().charAt(0);
     }
 
     public PieceColor getColor() {
         return color;
     }
 
-    public char getCharValue() {
-        return charValue;
-    }
+
 
     public boolean hasRepeatableMoves() {
         return repeatableMoves;
