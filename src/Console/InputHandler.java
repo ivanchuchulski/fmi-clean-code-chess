@@ -35,7 +35,7 @@ public class InputHandler {
         return parse(coords);
     }
 
-    private BoardCoordinate parse(String val) {
+    public BoardCoordinate parse(String val) {
         int x = mapper.map(val.charAt(0));
         int y = mapper.map(Integer.parseInt(String.valueOf(val.charAt(1))));
 

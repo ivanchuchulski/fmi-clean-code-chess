@@ -5,7 +5,7 @@ import Console.BoardDisplay;
 
 import java.util.Scanner;
 
-public class Program {
+public class TwoPlayerChessGame {
     private static Scanner scanner = new Scanner(System.in);
     private static InputHandler inputHandler = new InputHandler();
     private static BoardDisplay boardDisplay = new BoardDisplay();
