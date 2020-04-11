@@ -40,6 +40,8 @@ public class TwoPlayerChessGame {
 
         } while (!game.isFinished());
 
+        game.printWinner();
+
         scanner.close();
         System.out.println("Game has finished. Thanks for playing.");
     }
