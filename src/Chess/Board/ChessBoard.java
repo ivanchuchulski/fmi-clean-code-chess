@@ -1,9 +1,9 @@
 package Chess.Board;
 
-import Chess.Board.Enums.TileColor;
+import Chess.Board.BoardEnums.TileColor;
 import Chess.Pieces.ChessPiece;
 import Chess.Pieces.*;
-import Chess.Pieces.Enums.PieceColor;
+import Chess.Pieces.PieceEnums.PieceColor;
 
 import java.util.ArrayList;
 

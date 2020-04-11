@@ -1,8 +1,8 @@
 package Chess.Board;
 
 import Chess.Pieces.ChessPiece;
-import Chess.Pieces.Enums.PieceColor;
-import Chess.Pieces.Enums.PieceType;
+import Chess.Pieces.PieceEnums.PieceColor;
+import Chess.Pieces.PieceEnums.PieceType;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,19 @@ public class ChessGame {
         board = new ChessBoard();
         currentMovePieceColor = firstMovePieceColor;
         isFinished = false;
+    }
+
+    public void printWinner() {
+        if (currentMovePieceColor.equals(PieceColor.White)) {
+            System.out.printf("White won this game!%n");
+        }
+        else {
+            System.out.printf("Black won this game!%n");
+        }
+    }
+
+    public PieceColor getLastPlayedMovePieceColor() {
+        return currentMovePieceColor.equals(PieceColor.Black) ? PieceColor.White : PieceColor.Black;
     }
 
     /**
@@ -327,18 +340,13 @@ public class ChessGame {
         return possibleMoves.toArray(new BoardCoordinate[0]);
     }
 
-
-
-
-
-
-
     // Determine whether the Pawn at 'from' on 'board' has moved yet.
     public boolean isFirstMoveForPawn(BoardCoordinate from, ChessBoard board) {
         Tile tile = board.getTileFromTuple(from);
         if (tile.isEmpty() || tile.getPiece().getPieceType() != PieceType.Pawn) {
             return false;
-        } else {
+        }
+        else {
             PieceColor color = tile.getPiece().getColor();
             return (color == PieceColor.White)
                     ? from.Y() == 6

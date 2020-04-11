@@ -1,8 +1,8 @@
 package Chess.Pieces;
 
 import Chess.Board.Move;
-import Chess.Pieces.Enums.PieceColor;
-import Chess.Pieces.Enums.PieceType;
+import Chess.Pieces.PieceEnums.PieceColor;
+import Chess.Pieces.PieceEnums.PieceType;
 
 public class King extends ChessPiece {
 

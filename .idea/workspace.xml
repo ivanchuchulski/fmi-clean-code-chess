@@ -51,6 +51,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/Chess/Board" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -79,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.TwoPlayerChessGameTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="ChessCleanCode" />
@@ -96,14 +97,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TwoPlayerChessGameTest.testFoolsMate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessCleanCode" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TwoPlayerChessGameTest" />
+      <option name="METHOD_NAME" value="testFoolsMate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TwoPlayerChessGameTest.testScholarsMate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChessCleanCode" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TwoPlayerChessGameTest" />
+      <option name="METHOD_NAME" value="testScholarsMate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.TwoPlayerChessGameTest" />
+      <item itemvalue="JUnit.TwoPlayerChessGameTest.testScholarsMate" />
+      <item itemvalue="JUnit.TwoPlayerChessGameTest.testFoolsMate" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.TwoPlayerChessGameTest" />
+        <item itemvalue="JUnit.TwoPlayerChessGameTest.testScholarsMate" />
+        <item itemvalue="JUnit.TwoPlayerChessGameTest.testFoolsMate" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -129,6 +154,10 @@
       <workItem from="1585920323290" duration="2190000" />
       <workItem from="1586014955620" duration="1788000" />
       <workItem from="1586017157742" duration="728000" />
+      <workItem from="1586078564277" duration="1991000" />
+      <workItem from="1586080582631" duration="2423000" />
+      <workItem from="1586188934491" duration="640000" />
+      <workItem from="1586620277945" duration="1589000" />
     </task>
     <servers />
   </component>
@@ -164,6 +193,12 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Pawn)fromTile.piece).type" custom="Chess.Pieces.Pawn" />
+        <watch expression="((Pawn)fromTile.piece).moves" custom="Chess.Pieces.Pawn" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ChessCleanCode$TwoPlayerChessGameTest.ic" NAME="TwoPlayerChessGameTest Coverage Results" MODIFIED="1586016657141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

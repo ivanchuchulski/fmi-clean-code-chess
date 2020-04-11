@@ -1,4 +1,4 @@
-package Chess.Pieces.Enums;
+package Chess.Pieces.PieceEnums;
 
 public enum PieceType {
     Pawn,

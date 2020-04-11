@@ -1,7 +1,7 @@
 package Chess.Board;
 
 
-import Chess.Board.Enums.TileColor;
+import Chess.Board.BoardEnums.TileColor;
 import Chess.Pieces.ChessPiece;
 
 public class Tile {

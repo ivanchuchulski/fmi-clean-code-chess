@@ -1,4 +1,4 @@
-package Chess.Board.Enums;
+package Chess.Board.BoardEnums;
 
 public enum TileColor {
     White,
