@@ -7,15 +7,16 @@ import Chess.Pieces.PieceEnums.PieceType;
 import java.util.ArrayList;
 
 public class ChessGame {
-    private final ChessBoard board;
+    private final PieceColor FIRST_MOVE_PIECE_COLOR = PieceColor.White;
+
     private boolean isFinished;
     private PieceColor currentMovePieceColor;
-    private PieceColor firstMovePieceColor = PieceColor.White;
+    private final ChessBoard board;
 
     public ChessGame() {
-        board = new ChessBoard();
-        currentMovePieceColor = firstMovePieceColor;
         isFinished = false;
+        currentMovePieceColor = FIRST_MOVE_PIECE_COLOR;
+        board = new ChessBoard();
     }
 
     public void printWinner() {
