@@ -92,30 +92,38 @@ public class ChessBoard {
         return board;
     }
 
+
+
     // Will break on boards with no Kings of 'color'. Should never happen.
     public BoardCoordinate getKingLocation(PieceColor color) {
-        BoardCoordinate location = new BoardCoordinate(-1, -1);
-        for (int x = 0; x <= 7; x++) {
-            for (int y = 0; y <= 7; y++) {
+        BoardCoordinate locationCandidate = new BoardCoordinate(-1, -1);
+
+        for (int x = 0; x < ROWS_NUM; x++) {
+            for (int y = 0; y < COLUMNS_NUM; y++) {
                 if (!board[y][x].isEmpty()) {
-                    ChessPiece piece = board[y][x].getPiece();
-                    if (piece.getColor() == color && piece instanceof King) {
-                        location = new BoardCoordinate(x, y);
+                    ChessPiece pieceAtNonEmptyLocation = board[y][x].getPiece();
+
+                    if (pieceAtNonEmptyLocation.getColor() == color && pieceAtNonEmptyLocation instanceof King) {
+                        locationCandidate = new BoardCoordinate(x, y);
                     }
                 }
             }
         }
-        return location;
+
+        return locationCandidate;
     }
 
     public BoardCoordinate[] getAllPiecesLocationForColor(PieceColor color) {
         ArrayList<BoardCoordinate> locations = new ArrayList<>();
-        for (int x = 0; x <= 7; x++) {
-            for (int y = 0; y <= 7; y++) {
-                if (!board[y][x].isEmpty() && board[y][x].getPiece().getColor() == color)
+
+        for (int x = 0; x < ROWS_NUM; x++) {
+            for (int y = 0; y < COLUMNS_NUM; y++) {
+                if (!board[y][x].isEmpty() && board[y][x].getPiece().getColor() == color) {
                     locations.add(new BoardCoordinate(x, y));
+                }
             }
         }
+
         return locations.toArray(new BoardCoordinate[0]);//allocate new array automatically.
     }
 
