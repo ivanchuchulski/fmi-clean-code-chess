@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TwoPlayerChessGameTest {
+public class ApplicationTest {
     private static InputHandler inputHandler = new InputHandler();
     private static BoardDisplay boardDisplay = new BoardDisplay();
     private static ChessGame game = new ChessGame();

@@ -33,8 +33,6 @@ public abstract class ChessPiece {
         return color;
     }
 
-
-
     public boolean hasRepeatableMoves() {
         return repeatableMoves;
     }

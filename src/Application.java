@@ -5,11 +5,15 @@ import Console.BoardDisplay;
 
 import java.util.Scanner;
 
-public class TwoPlayerChessGame {
+public class Application {
     private static Scanner scanner = new Scanner(System.in);
     private static InputHandler inputHandler = new InputHandler();
     private static BoardDisplay boardDisplay = new BoardDisplay();
     private static ChessGame game = new ChessGame();
+
+    public static void main(String[] args) {
+        Application.play();
+    }
 
     public static void play() {
         boardDisplay.clearConsole();
