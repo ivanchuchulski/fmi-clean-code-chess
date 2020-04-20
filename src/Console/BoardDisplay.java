@@ -1,14 +1,19 @@
 package Console;
 
 import Chess.Board.ChessBoard;
+import Chess.Board.ChessGame;
 import Chess.Board.Tile;
 
 public class BoardDisplay {
     public BoardDisplay() {
     }
 
-    public void printBoard(ChessBoard board) {
+    public void showBoard(ChessBoard board) {
         clearConsole();
+        printBoard(board);
+    }
+
+    public void printBoard(ChessBoard board) {
         Tile[][] b = board.getBoard();
 
         System.out.println();

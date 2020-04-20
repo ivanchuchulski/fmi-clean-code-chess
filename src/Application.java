@@ -6,47 +6,54 @@ import Console.BoardDisplay;
 import java.util.Scanner;
 
 public class Application {
-    private static Scanner scanner = new Scanner(System.in);
-    private static InputHandler inputHandler = new InputHandler();
-    private static BoardDisplay boardDisplay = new BoardDisplay();
-    private static ChessGame game = new ChessGame();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final InputHandler inputHandler = new InputHandler();
+    private static final BoardDisplay boardDisplay = new BoardDisplay();
+    private static final ChessGame chessGame = new ChessGame();
 
     public static void main(String[] args) {
-        Application.play();
-    }
-
-    public static void play() {
-        boardDisplay.clearConsole();
-        boardDisplay.printBoard(game.getBoard());
 
         do {
-            System.out.println("Enter move (eg. A2-A3): ");
-            String input = scanner.nextLine();
+            String input = getInput();
 
-            if (!inputHandler.isInputValid(input)) {
-                System.out.println("Invalid input!");
-                System.out.println("Valid input is in form: A2-A3");
+            BoardCoordinate from = inputHandler.getFrom(input);
+            BoardCoordinate to = inputHandler.getTo(input);
 
-                continue;
-            }
+            playMove(from, to);
+        } while (!chessGame.isFinished());
 
-            BoardCoordinate from = inputHandler.getSource(input);
-            BoardCoordinate to = inputHandler.getDestination(input);
-
-            boolean movePlayed = game.playMove(from, to);
-            if (!movePlayed) {
-                System.out.println("Illegal move!");
-                continue;
-            }
-
-            boardDisplay.clearConsole();
-            boardDisplay.printBoard(game.getBoard());
-
-        } while (!game.isFinished());
-
-        game.printWinner();
+        ShowBoard();
+        chessGame.printFinalResult();
 
         scanner.close();
         System.out.println("Game has finished. Thanks for playing.");
+    }
+
+    private static void ShowBoard() {
+        boardDisplay.showBoard(chessGame.getBoard());
+    }
+
+    private static String getInput() {
+        String input;
+        do {
+            ShowBoard();
+            System.out.println("Enter move (eg. E2-E4): ");
+
+            input = scanner.nextLine();
+
+            if (inputHandler.isInputValid(input)) {
+                return input;
+            }
+            else {
+                System.out.println("error : incorrect input format, please try again");
+            }
+        } while (true);
+    }
+
+    private static void playMove(BoardCoordinate from, BoardCoordinate to) {
+        boolean movePlayed = chessGame.playMove(from, to);
+        if (!movePlayed) {
+            System.out.println("Illegal move!");
+        }
     }
 }

@@ -19,7 +19,7 @@ public class ChessGame {
         board = new ChessBoard();
     }
 
-    public void printWinner() {
+    public void printFinalResult() {
         if (currentMovePieceColor.equals(PieceColor.White)) {
             System.out.printf("White won this game!%n");
         }

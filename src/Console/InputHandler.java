@@ -6,7 +6,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputHandler {
-    private final static Pattern validMove = Pattern.compile("([a-hA-H][1-8])([-])([a-hA-H][1-8])", Pattern.CASE_INSENSITIVE);
+    private final int SOURCE_REGEX_GROUP = 1;
+    private final int TO_REGEX_GROUP = 3;
+    private final static Pattern validMoveForm = Pattern.compile("([a-hA-H][1-8])([-])([a-hA-H][1-8])", Pattern.CASE_INSENSITIVE);
     private final BoardMapper mapper;
 
     public InputHandler() {
@@ -14,25 +16,31 @@ public class InputHandler {
     }
 
     public boolean isInputValid(String move) {
-        Matcher matcher = validMove.matcher(move);
+        Matcher matcher = validMoveForm.matcher(move);
 
         return matcher.matches();
     }
 
-    public BoardCoordinate getSource(String val) {
-        Matcher matcher = validMove.matcher(val);
-        matcher.matches();
-        String coords = matcher.group(1);
+    public BoardCoordinate getFrom(String val) {
+        Matcher matcher = validMoveForm.matcher(val);
 
-        return parse(coords);
+        if (matcher.matches()) {
+            String coords = matcher.group(SOURCE_REGEX_GROUP);
+            return parse(coords);
+        }
+
+        throw new IllegalArgumentException();
     }
 
-    public BoardCoordinate getDestination(String val) {
-        Matcher matcher = validMove.matcher(val);
-        matcher.matches();
-        String coords = matcher.group(3);
+    public BoardCoordinate getTo(String val) {
+        Matcher matcher = validMoveForm.matcher(val);
 
-        return parse(coords);
+        if (matcher.matches()) {
+            String coords = matcher.group(TO_REGEX_GROUP);
+            return parse(coords);
+        }
+
+        throw new IllegalArgumentException();
     }
 
     public BoardCoordinate parse(String val) {
